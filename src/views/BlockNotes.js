@@ -1,5 +1,5 @@
 import React from "react";
-import { useBlockNote } from "@blocknote/react";
+import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
 
 function BlockNotes() {
