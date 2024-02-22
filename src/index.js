@@ -25,16 +25,20 @@ import "./assets/css/animate.min.css";
 import "./assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0";
 import "./assets/css/demo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./style.css";
 
 import AdminLayout from "layouts/Admin.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+
 root.render(
   <BrowserRouter>
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+      <Route path='/admin/list-posts/abc' render={(props)=><SinglePost {...props}/>}></Route>
       <Redirect from="/" to="/admin/dashboard" />
+   
     </Switch>
   </BrowserRouter>
 );

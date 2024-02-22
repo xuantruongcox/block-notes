@@ -26,6 +26,8 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 import routes from "routes.js";
 
 import sidebarImage from "assets/img/sidebar-3.jpg";
+import SinglePost from "views/SinglePost";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function Admin() {
   const [image, setImage] = React.useState(sidebarImage);
@@ -33,11 +35,13 @@ function Admin() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
           <Route
+            exact
             path={prop.layout + prop.path}
             render={(props) => <prop.component {...props} />}
             key={key}
@@ -68,7 +72,14 @@ function Admin() {
         <div className="main-panel" ref={mainPanel}>
           <AdminNavbar />
           <div className="content">
-            <Switch>{getRoutes(routes)}</Switch>
+            <Switch>
+              {getRoutes(routes)}
+              <Route
+                path="/admin/list-posts/:id"
+                render={(props) => <SinglePost {...props} />}
+              />
+              <Redirect exact from="/admin/update-post" to="/admin/dashboard" />
+            </Switch>
           </div>
           <Footer />
         </div>
