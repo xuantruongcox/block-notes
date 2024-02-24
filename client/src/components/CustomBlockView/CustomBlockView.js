@@ -12,9 +12,23 @@ const CustomBlockView = (props) => {
   if (typeof content === "string") {
     content = JSON.parse(content);
   }
+
+  const light = {
+   
+  }
+  const dark = {
+
+  }
+ 
+  const mainTheme = {
+    light,
+    dark
+  }
+
   const editor = useBlockNote({
     initialContent: content ? content : undefined,
     editable: editable,
+    defaultStyles: false,
     onEditorContentChange: (e)=>{
         if(!isCreate){
             onSubmit(e)
@@ -24,7 +38,7 @@ const CustomBlockView = (props) => {
   const submitBtn = isCreate ? <button onClick={()=>onSubmit(editor)} className="btn btn-primary">Submit</button> : null;
   return (
     <>
-      <BlockNoteView theme={theme} editor={editor}></BlockNoteView>
+      <BlockNoteView theme={mainTheme[theme]} editor={editor}></BlockNoteView>
       {submitBtn}
     </>
   );
