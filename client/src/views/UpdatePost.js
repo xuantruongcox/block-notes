@@ -1,13 +1,14 @@
 import axios from "axios";
 import CustomBlockView from "components/CustomBlockView/CustomBlockView";
 import React, { createElement, useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import ContentEditable from "react-contenteditable";
 import { useParams, Redirect } from "react-router-dom";
 
 const apiServer = `http://localhost:3300`;
 
-const SinglePost = () => {
+const UpdatePost = () => {
   const [content, setContent] = useState();
   const [title, setTitle] = useState("");
   const [loader, setLoader] = useState();
@@ -50,18 +51,22 @@ const SinglePost = () => {
     axios.put(`${apiServer}/posts/${postID}`, article);
   };
   return (
-    <Container>
-      <h1 className="text-break">{title}</h1>
+    <Container id="block_view">
+      <ContentEditable
+        data-placeholder="Your title"
+        onChange={handleTitleChange}
+        html={title || ""}
+        tagName="h1"
+      ></ContentEditable>
+
       {content ? (
-        <CustomBlockView
-          editable={false}
-          onSubmit={onHandleSubmit}
-          content={content}
-        />
+        <>
+          <CustomBlockView onSubmit={onHandleSubmit} content={content} />
+        </>
       ) : null}
       {loader}
     </Container>
   );
 };
 
-export default SinglePost;
+export default UpdatePost;

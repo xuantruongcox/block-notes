@@ -1,4 +1,4 @@
-[contenteditable] {padding:12px; background:#f7f7f7; }
+[contenteditable] {background:#f7f7f7; }
 
 [data-placeholder]:empty:before{
   content: attr(data-placeholder);

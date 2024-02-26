@@ -88,7 +88,7 @@ const dashboardRoutes = [
     icon: "nc-icon nc-bullet-list-67",
     component: ListPost,
     layout: "/admin",
-  },
+  }
 ];
 
 export default dashboardRoutes;

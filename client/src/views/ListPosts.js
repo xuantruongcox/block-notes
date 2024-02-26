@@ -39,13 +39,21 @@ const ListPost = () => {
                 <Link to={`list-posts/${post.id}`}>
                   <Card>
                     <Card.Body className="d-flex justify-content-between align-items-center">
-                      <p className="post__title mb-0">{post.title}</p>
-                      <Button
-                        onClick={(e) => handleRemove(e, post.id)}
-                        className="border-0 lh-0"
-                      >
-                        <i className="nc-icon nc-simple-remove text-danger font-weight-bold"></i>
-                      </Button>
+                      <p className="post__title mb-0 text-truncate">{post.title}</p>
+                      <div className="btn__group mx-2 d-flex align-items-center">
+                        <Link
+                          to={`/admin/update-post/${post.id}`}
+                          className="border-0 lh-0"
+                        >
+                          Edit
+                        </Link>
+                        <Button
+                          onClick={(e) => handleRemove(e, post.id)}
+                          className="border-0 lh-0"
+                        >
+                          <i className="nc-icon nc-simple-remove text-danger font-weight-bold"></i>
+                        </Button>
+                      </div>
                     </Card.Body>
                   </Card>
                 </Link>

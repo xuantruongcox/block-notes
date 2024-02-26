@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import { Card } from "react-bootstrap";
-import "@blocknote/react/style.css";
 import axios from "axios";
 import ContentEditable from "react-contenteditable";
 import CustomBlockView from "components/CustomBlockView/CustomBlockView";
+import { Container } from "react-bootstrap";
 
 const apiServer = `http://localhost:3300`;
 
@@ -15,24 +15,16 @@ const BlockNotes = () => {
   };
 
   return (
-    <>
-      <Card>
-        <Card.Header>
-          <ContentEditable
-            data-placeholder="Your title"
-            html={title}
-            onChange={handleTitleChange}
-            tagName="h1"
-          ></ContentEditable>
-        </Card.Header>
-        <Card.Body>
-          <CustomBlockView
-            isCreate={true}
-            onSubmit={postArticle}
-          ></CustomBlockView>
-        </Card.Body>
-      </Card>
-    </>
+    <Container>
+      <ContentEditable
+        data-placeholder="Your title"
+        html={title}
+        onChange={handleTitleChange}
+        tagName="h1"
+      ></ContentEditable>
+
+      <CustomBlockView isCreate={true} onSubmit={postArticle}></CustomBlockView>
+    </Container>
   );
   function postArticle(editorParams) {
     const article = {
@@ -42,7 +34,7 @@ const BlockNotes = () => {
     axios.post(`${apiServer}/posts`, article).then((res) => {
       setTitle("");
       editorParams.removeBlocks(article.content);
-      alert('Submitted!!!')
+      alert("Submitted!!!");
     });
   }
 };

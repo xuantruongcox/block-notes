@@ -28,6 +28,7 @@ import routes from "routes.js";
 import sidebarImage from "assets/img/sidebar-3.jpg";
 import SinglePost from "views/SinglePost";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import UpdatePost from "views/UpdatePost";
 
 function Admin() {
   const [image, setImage] = React.useState(sidebarImage);
@@ -78,7 +79,7 @@ function Admin() {
                 path="/admin/list-posts/:id"
                 render={(props) => <SinglePost {...props} />}
               />
-              <Redirect exact from="/admin/update-post" to="/admin/dashboard" />
+              <Route path="/admin/update-post/:id" render={(props)=> <UpdatePost {...props}/>}/>
             </Switch>
           </div>
           <Footer />
